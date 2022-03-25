@@ -21,4 +21,4 @@ spec:
         - containerPort: 8080
         env:
         - name: GREETING
-          value: Aloha        
+          value: Aloha

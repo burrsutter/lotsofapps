@@ -19,5 +19,7 @@ Native Build in container
 
 docker build -f src/main/docker/Dockerfile.native -t burrsutter/hello .
 
+docker login
+
 docker push burrsutter/hello
 

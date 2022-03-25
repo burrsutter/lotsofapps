@@ -15,7 +15,7 @@ spec:
         app: baseapp
     spec:
       containers:
-      - image: docker.io/burrsutter/hello
+      - image: docker.io/burrsutter/hello:1.0.0
         name: baseapp        
         ports:
         - containerPort: 8080

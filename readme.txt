@@ -1,3 +1,7 @@
+brew install helm
+
+
+
 Notes on GraalVM Install:
 
 brew install --cask graalvm/tap/graalvm-ce-lts-java11

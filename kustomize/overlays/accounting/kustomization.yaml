@@ -16,8 +16,8 @@ patches:
       path: /spec/template/spec/containers/0/name
       value: accounting
     - op: replace
-      path: /spec/template/spec/containers/0/env/0/value
-      value: accounting
+      path: "/spec/template/spec/containers/0/env/0/value"
+      value: Accounting
 - target:
     kind: Service
     name: .*

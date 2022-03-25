@@ -16,10 +16,8 @@ patches:
       path: /spec/template/spec/containers/0/name
       value: accounting
     - op: add
-      path: /spec/template/spec/containers/0/env/
-        value:
-            name: GREETING
-            value: accounting
+      path: /spec/template/spec/containers/0/env/0/value
+      value: accounting
 - target:
     kind: Service
     name: .*

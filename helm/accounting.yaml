@@ -54,7 +54,7 @@ spec:
               protocol: TCP
           env:
             - name: GREETING
-              value: Aloha              
+              value: accounting
           livenessProbe:
             httpGet:
               path: /health

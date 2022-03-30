@@ -1,0 +1,44 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mastercard-processor
+  labels:    
+    app: mastercard-processor
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8080
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: mastercard-processor
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mastercard-processor
+  labels:
+    app: mastercard-processor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mastercard-processor
+  template:
+    metadata:
+      labels:
+        app: mastercard-processor
+    spec:
+      containers:
+        - name: mastercard-processor
+          image: "docker.io/burrsutter/hello:1.0.0"
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          env:
+            - name: GREETING
+              value: mastercard-processor

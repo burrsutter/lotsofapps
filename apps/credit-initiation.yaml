@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: credit-initiation
+  labels:
+    app.kubernetes.io/name: credit-initiation
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8080
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: credit-initiation    
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: credit-initiation
+  labels:
+    app: credit-initiation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: credit-initiation      
+  template:
+    metadata:
+      labels:
+        app: credit-initiation        
+    spec:
+      containers:
+        - name: credit-initiation
+          image: "docker.io/burrsutter/hello:1.0.0"
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          env:
+            - name: GREETING
+              value: credit-initiation

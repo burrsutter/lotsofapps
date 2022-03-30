@@ -1,0 +1,44 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: plant-maintenance
+  labels:
+    app: plant-maintenance
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8080
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: plant-maintenance
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: plant-maintenance
+  labels:
+    app: plant-maintenance
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: plant-maintenance      
+  template:
+    metadata:
+      labels:
+        app: plant-maintenance
+    spec:
+      containers:
+        - name: plant-maintenance
+          image: "docker.io/burrsutter/hello:1.0.0"
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          env:
+            - name: GREETING
+              value: plant-maintenance

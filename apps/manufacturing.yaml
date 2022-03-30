@@ -1,0 +1,44 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: manufacturing
+  labels:
+    app: manufacturing
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8080
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: manufacturing    
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: manufacturing
+  labels:    
+    app: manufacturing
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: manufacturing
+  template:
+    metadata:
+      labels:
+        app: manufacturing
+    spec:
+      containers:
+        - name: manufacturing
+          image: "docker.io/burrsutter/hello:1.0.0"
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          env:
+            - name: GREETING
+              value: manufacturing

@@ -1,0 +1,44 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: human-capital
+  labels:
+    app: human-capital
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8080
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: human-capital
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: human-capital
+  labels:
+    app: human-capital
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: human-capital      
+  template:
+    metadata:
+      labels:
+        app: human-capital        
+    spec:
+      containers:
+        - name: human-capital
+          image: "docker.io/burrsutter/hello:1.0.0"
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          env:
+            - name: GREETING
+              value: human-capital

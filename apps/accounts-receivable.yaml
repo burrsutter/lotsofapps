@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: accounts-receivable
+  labels:
+    app: accounts-receivable
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8080
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: accounts-receivable    
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: accounts-receivable
+  labels:
+    app: accounts-receivable
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: accounts-receivable
+  template:
+    metadata:
+      labels:
+        app: accounts-receivable        
+    spec:
+      containers:
+        - name: accounts-receivable
+          image: "docker.io/burrsutter/hello:1.0.0"
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          env:
+            - name: GREETING
+              value: accounts-receivable

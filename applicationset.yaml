@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: myapps
+spec:
+  generators:
+  - clusters:
+      selector:
+        matchLabels:
+          env: myapps
+  template:
+    metadata:
+      name: 'myapps'
+    spec:
+      project: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+      source:
+        repoURL: https://github.com/burrsutter/lotsofapps.git
+        targetRevision: main
+        path: 'apps'
+      destination:
+        server: '{{server}}'
+        namespace: accounting

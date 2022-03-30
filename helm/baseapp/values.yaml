@@ -7,7 +7,6 @@ image:
   pullPolicy: Always # demo purposes
   tag: "1.0.0"
 
-nameOverride: "accounting"
 fullnameOverride: "accounting"
 
 # service

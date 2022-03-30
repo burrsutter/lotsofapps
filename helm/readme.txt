@@ -1,18 +1,13 @@
 
-helm template baseapp > accounting.yaml
+helm template --set fullnameOverride=accounting baseapp > generated/accounting.yaml
+kubectl apply -f generated/accounting.yaml
 
-helm apply -f accounting.yaml
+helm template --set fullnameOverride=distribution baseapp > generated/distribution.yaml
+kubectl apply -f generated/distribution.yaml
 
-change values.yaml to distribution
+helm template --set fullnameOverride=finance baseapp > generated/finance.yaml
+kubectl apply -f generated/finance.yaml
 
-helm template baseapp > distribution.yaml
-
-helm apply -f distribution.yaml
-
-change values.yaml to finance
-
-helm template baseapp > finance.yaml
-
-helm apply -f finance.yaml
-
+helm template --set fullnameOverride=human-capital baseapp > generated/human-capital.yaml
+kubectl apply -f generated/human-capital.yaml
 

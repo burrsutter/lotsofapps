@@ -18,7 +18,7 @@ public class GreetingResource {
     public String greet() {
         count++;
         greeting = System.getenv().getOrDefault("GREETING","Default");
-        return greeting + " from Quarkus! " + count + " on " + hostname + "\n";
+        return greeting + " via Quarkus " + count + " on " + hostname + "\n";
     }
 
     @GET

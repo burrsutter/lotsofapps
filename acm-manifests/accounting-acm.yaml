@@ -1,0 +1,68 @@
+----
+apiVersion: v1                    
+kind: Namespace
+metadata:
+  name: accounting                             
+---
+apiVersion: app.k8s.io/v1beta1
+kind: Application
+metadata:
+  name: accounting
+  namespace: accounting
+spec:
+  componentKinds:
+  - group: apps.open-cluster-management.io
+    kind: Subscription
+  descriptor: {}
+  selector:
+    matchExpressions:
+      - key: app
+        operator: In
+        values: 
+          - accounting
+---
+apiVersion: v1                      
+kind: Namespace
+metadata:
+  name: ggithubcom-burrsutter-accounting-ns
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: Channel
+metadata:
+  annotations:
+    apps.open-cluster-management.io/reconcile-rate: medium
+  name: ggithubcom-burrsutter-accounting
+  namespace: ggithubcom-burrsutter-accounting-ns
+spec:
+  type: Git
+  pathname: 'https://github.com/burrsutter/lotsofapps'
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: Subscription
+metadata:
+  annotations:
+    apps.open-cluster-management.io/git-branch: main
+    apps.open-cluster-management.io/git-path: accounting
+    apps.open-cluster-management.io/reconcile-option: merge
+  labels:
+    app: accounting
+  name: accounting-subscription-1
+  namespace: accounting
+spec:
+  channel: ggithubcom-burrsutter-accounting-ns/ggithubcom-burrsutter-accounting
+  placement:
+    placementRef:
+      kind: PlacementRule
+      name: accounting-placement-1
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  labels:
+    app: accounting
+  name: accounting-placement-1
+  namespace: accounting
+spec:
+  clusterSelector:
+    matchLabels:
+      'environment': 'prod'

@@ -1,0 +1,78 @@
+=== Applications to throw at ACM
+
+
+==== Deploying .yamls
+
+----
+kubectl apply -f acm-manifests/
+----
+
+==== Building the Code
+
+
+Using your Docker Daemon to build a Linux executable
+
+----
+mvn package -Pnative -Dquarkus.native.container-build=true
+----
+
+OR
+
+----
+brew install --cask graalvm/tap/graalvm-ce-java17
+export GRAALVM_HOME=/Library/Java/JavaVirtualMachines/graalvm-ce-java17-22.1.0-dev/Contents/Home
+xattr -r -d com.apple.quarantine ${GRAALVM_HOME}/../..
+$GRAALVM_HOME/bin/gu install native-image
+export JAVA_HOME=${GRAALVM_HOME}
+export PATH=${GRAALVM_HOME}/bin:$PATH
+
+mvn package -Pnative -Dquarkus.native.container-build=true
+----
+
+OR
+
+MacOS M1 ARM (Not Working)
+
+----
+brew uninstall --cask graalvm/tap/graalvm-ce-java17
+----
+
+Download 
+https://github.com/graalvm/graalvm-ce-dev-builds/releases/download/22.2.0-dev-20220330_2302/graalvm-ce-java17-darwin-aarch64-dev.tar.gz
+from https://github.com/graalvm/graalvm-ce-dev-builds/releases
+
+And place under sdkman
+
+----
+BUILD=22.2.0
+INSTALLED_PATH=$HOME/.sdkman/candidates/java/${BUILD}.dev.r17-grl
+
+tar zxpf graalvm-ce-java17-darwin-aarch64-dev.tar.gz 
+mv $HOME/Desktop/graalvm-ce-java17-${BUILD}-dev/Contents/Home $INSTALLED_PATH
+sudo xattr -r -d com.apple.quarantine ~/.sdkman/candidates/java/${BUILD}.dev.r17-grl
+BUILD=22.2.0 
+sdk default java ${BUILD}.dev.r17-grl
+# set by sdkman
+echo $JAVA_HOME 
+# making GRAALVM_HOME the same as JAVA_HOME
+export GRAALVM_HOME=$JAVA_HOME
+
+gu install native-image
+
+java -version
+openjdk version "17.0.3" 2022-04-19
+OpenJDK Runtime Environment GraalVM CE 22.2.0-dev (build 17.0.3+4-jvmci-22.1-b03)
+OpenJDK 64-Bit Server VM GraalVM CE 22.2.0-dev (build 17.0.3+4-jvmci-22.1-b03, mixed mode, sharing)
+----
+
+
+
+And Docker build
+
+----
+docker build -f src/main/docker/Dockerfile.native -t burrsutter/hello:1.0.0 .
+docker login
+docker push docker.io/burrsutter/hello:1.0.0
+----
+
+

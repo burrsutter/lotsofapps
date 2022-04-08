@@ -1,0 +1,11 @@
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  labels:
+    app: accounts-receivable
+  name: accounts-receivable-placement-1
+  namespace: accounts-receivable
+spec:
+  clusterSelector:
+    matchLabels:
+      env: prod

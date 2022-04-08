@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: accounts-receivable
+---
+apiVersion: v1                      
+kind: Namespace
+metadata:
+  name: accounts-receivable-channel
+---

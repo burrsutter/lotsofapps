@@ -1,0 +1,11 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: fraud-detection
+  labels:
+    name: fraud-detection
+spec:
+  path: "/"
+  to:
+    kind: Service
+    name: fraud-detection

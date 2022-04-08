@@ -1,0 +1,11 @@
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  labels:
+    app: fraud-detection
+  name: fraud-detection-placement-1
+  namespace: fraud-detection
+spec:
+  clusterSelector:
+    matchLabels:
+      env: prod

@@ -1,0 +1,11 @@
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  labels:
+    app: accounting
+  name: accounting-placement-1
+  namespace: accounting
+spec:
+  clusterSelector:
+    matchLabels:
+      env: prod

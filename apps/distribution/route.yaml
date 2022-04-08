@@ -1,0 +1,11 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: distribution
+  labels:
+    name: distribution
+spec:
+  path: "/"
+  to:
+    kind: Service
+    name: distribution

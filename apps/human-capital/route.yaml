@@ -1,0 +1,11 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: human-capital
+  labels:
+    name: human-capital
+spec:
+  path: "/"
+  to:
+    kind: Service
+    name: human-capital

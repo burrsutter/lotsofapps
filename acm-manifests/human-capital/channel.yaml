@@ -1,0 +1,10 @@
+apiVersion: apps.open-cluster-management.io/v1
+kind: Channel
+metadata:
+  annotations:
+    apps.open-cluster-management.io/reconcile-rate: medium
+  name: human-capital
+  namespace: human-capital-channel
+spec:
+  type: Git
+  pathname: https://github.com/burrsutter/lotsofapps

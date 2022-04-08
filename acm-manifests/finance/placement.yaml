@@ -1,0 +1,11 @@
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  labels:
+    app: finance
+  name: finance-placement-1
+  namespace: finance
+spec:
+  clusterSelector:
+    matchLabels:
+      env: prod

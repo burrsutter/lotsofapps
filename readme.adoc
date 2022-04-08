@@ -4,7 +4,7 @@
 ==== Deploying .yamls
 
 ----
-kubectl apply -f acm-manifests/
+kubectl apply -k acm-manifests/accounting
 ----
 
 ==== Building the Code

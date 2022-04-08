@@ -1,0 +1,11 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: accounting
+  labels:
+    name: accounting
+spec:
+  path: "/"
+  to:
+    kind: Service
+    name: accounting

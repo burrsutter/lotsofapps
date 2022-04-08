@@ -1,0 +1,11 @@
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  labels:
+    app: client-onboarding
+  name: client-onboarding-placement-1
+  namespace: client-onboarding
+spec:
+  clusterSelector:
+    matchLabels:
+      env: prod

@@ -1,0 +1,11 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: visa-processor
+  labels:
+    name: visa-processor
+spec:
+  path: "/"
+  to:
+    kind: Service
+    name: visa-processor

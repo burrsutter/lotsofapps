@@ -1,0 +1,17 @@
+apiVersion: apps.open-cluster-management.io/v1
+kind: Subscription
+metadata:
+  annotations:
+    apps.open-cluster-management.io/git-branch: main
+    apps.open-cluster-management.io/git-path: apps/sales
+    apps.open-cluster-management.io/reconcile-option: merge
+  labels:
+    app: sales
+  name: sales-subscription-1
+  namespace: sales
+spec:
+  channel: sales-channel/sales
+  placement:
+    placementRef:
+      kind: PlacementRule
+      name: sales-placement-1

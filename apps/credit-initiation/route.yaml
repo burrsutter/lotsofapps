@@ -1,0 +1,11 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: credit-initiation
+  labels:
+    name: credit-initiation
+spec:
+  path: "/"
+  to:
+    kind: Service
+    name: credit-initiation

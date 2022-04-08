@@ -1,0 +1,11 @@
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  labels:
+    app: logistics
+  name: logistics-placement-1
+  namespace: logistics
+spec:
+  clusterSelector:
+    matchLabels:
+      env: prod

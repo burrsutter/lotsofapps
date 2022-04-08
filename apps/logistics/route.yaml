@@ -1,0 +1,11 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: logistics
+  labels:
+    name: logistics
+spec:
+  path: "/"
+  to:
+    kind: Service
+    name: logistics

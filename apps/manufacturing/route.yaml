@@ -1,0 +1,11 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: manufacturing
+  labels:
+    name: manufacturing
+spec:
+  path: "/"
+  to:
+    kind: Service
+    name: manufacturing

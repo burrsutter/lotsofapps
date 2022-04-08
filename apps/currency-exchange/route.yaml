@@ -1,0 +1,11 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: currency-exchange
+  labels:
+    name: currency-exchange
+spec:
+  path: "/"
+  to:
+    kind: Service
+    name: currency-exchange

@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: client-onboarding
-  labels:
-    app.kubernetes.io/name: client-onboarding
+  name: currency-exchange
+  labels:    
+    app: currency-exchange
 spec:
   type: ClusterIP
   ports:
@@ -12,4 +12,4 @@ spec:
       protocol: TCP
       name: http
   selector:
-    app.kubernetes.io/name: client-onboarding
+    app: currency-exchange

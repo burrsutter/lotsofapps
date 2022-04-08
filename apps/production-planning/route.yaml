@@ -1,0 +1,11 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: production-planning
+  labels:
+    name: production-planning
+spec:
+  path: "/"
+  to:
+    kind: Service
+    name: production-planning

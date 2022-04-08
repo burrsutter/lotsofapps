@@ -1,0 +1,11 @@
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  labels:
+    app: production-planning
+  name: production-planning-placement-1
+  namespace: production-planning
+spec:
+  clusterSelector:
+    matchLabels:
+      env: prod

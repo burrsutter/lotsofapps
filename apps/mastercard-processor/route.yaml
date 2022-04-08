@@ -1,0 +1,11 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: mastercard-processor
+  labels:
+    name: mastercard-processor
+spec:
+  path: "/"
+  to:
+    kind: Service
+    name: mastercard-processor

@@ -1,0 +1,11 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: plant-maintenance
+  labels:
+    name: plant-maintenance
+spec:
+  path: "/"
+  to:
+    kind: Service
+    name: plant-maintenance

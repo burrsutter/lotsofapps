@@ -1,0 +1,11 @@
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  labels:
+    app: plant-maintenance
+  name: plant-maintenance-placement-1
+  namespace: plant-maintenance
+spec:
+  clusterSelector:
+    matchLabels:
+      env: prod

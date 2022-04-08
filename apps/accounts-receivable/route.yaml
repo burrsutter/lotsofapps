@@ -1,0 +1,11 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: accounts-receivable
+  labels:
+    name: accounts-receivable
+spec:
+  path: "/"
+  to:
+    kind: Service
+    name: accounts-receivable

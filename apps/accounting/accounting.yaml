@@ -24,4 +24,4 @@ spec:
               protocol: TCP
           env:
             - name: GREETING
-              value: accounting2
+              value: accounting
